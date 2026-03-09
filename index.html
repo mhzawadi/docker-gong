@@ -78,16 +78,16 @@
 </head>
 <body>
 
-    <h1>The Zen Gong</h1>
+    <h1>The Gong of celebration</h1>
 
     <div class="gong-area" onclick="playGong()">
         <div id="visual-sound">GONG!</div>
         <div id="gong-disk" class="gong"></div>
     </div>
 
-    <p>Click the gong to find your inner peace.</p>
+    <p>Gong the gong.</p>
 
-    <audio id="gong-audio" src="https://cdn.pixabay.com/audio/2022/03/25/audio_b718e15c5f.mp3"></audio>
+    <audio id="gong-audio" src="/gong.mp3"></audio>
 
     <script>
         function playGong() {
@@ -102,10 +102,10 @@
             // Reset CSS animations
             disk.classList.remove('hit-animation');
             text.classList.remove('show-text');
-            
+
             // Trigger reflow to restart animation
-            void disk.offsetWidth; 
-            
+            void disk.offsetWidth;
+
             disk.classList.add('hit-animation');
             text.classList.add('show-text');
         }
