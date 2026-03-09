@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Virtual Gong</title>
+    <style>
+        body {
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* The Gong Container */
+        .gong-area {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gong {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #f1c40f 20%, #d35400 100%);
+            border: 10px solid #e67e22;
+            border-radius: 50%;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.1s;
+        }
+
+        /* Animation class added via JS */
+        .hit-animation {
+            animation: swing 0.6s ease-in-out;
+        }
+
+        @keyframes swing {
+            0% { transform: rotate(0deg) scale(1); }
+            10% { transform: rotate(-5deg) scale(1.05); }
+            30% { transform: rotate(5deg); }
+            50% { transform: rotate(-3deg); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        /* The Visual "GONG!" Text */
+        #visual-sound {
+            position: absolute;
+            top: -60px;
+            width: 100%;
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #f1c40f;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .show-text {
+            animation: burst 0.6s ease-out;
+        }
+
+        @keyframes burst {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        h1 { margin-bottom: 50px; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <h1>The Zen Gong</h1>
+
+    <div class="gong-area" onclick="playGong()">
+        <div id="visual-sound">GONG!</div>
+        <div id="gong-disk" class="gong"></div>
+    </div>
+
+    <p>Click the gong to find your inner peace.</p>
+
+    <audio id="gong-audio" src="https://cdn.pixabay.com/audio/2022/03/25/audio_b718e15c5f.mp3"></audio>
+
+    <script>
+        function playGong() {
+            const audio = document.getElementById('gong-audio');
+            const disk = document.getElementById('gong-disk');
+            const text = document.getElementById('visual-sound');
+
+            // Reset audio to start so you can "spam" the gong
+            audio.currentTime = 0;
+            audio.play();
+
+            // Reset CSS animations
+            disk.classList.remove('hit-animation');
+            text.classList.remove('show-text');
+            
+            // Trigger reflow to restart animation
+            void disk.offsetWidth; 
+            
+            disk.classList.add('hit-animation');
+            text.classList.add('show-text');
+        }
+    </script>
+
+</body>
+</html>

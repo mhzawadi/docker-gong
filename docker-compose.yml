@@ -1,0 +1,9 @@
+---
+services:
+  Dashboard:
+    image: mhzawadi/gong
+    ports:
+      - "8080:8080"
+    container_name: gong
+    labels:
+      - "dashboard.url=127.0.0.1:8080"
