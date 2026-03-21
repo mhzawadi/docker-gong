@@ -1,6 +1,6 @@
 ---
 services:
-  Dashboard:
+  gong:
     image: mhzawadi/gong
     ports:
       - "8080:8080"
@@ -9,3 +9,13 @@ services:
       - /Users/matt/git/docker-gong:/var/www/html
     labels:
       - "dashboard.url=127.0.0.1:8080"
+  gong_env:
+    image: mhzawadi/gong
+    ports:
+      - "8181:8080"
+    container_name: gong_env
+    labels:
+      - "dashboard.url=127.0.0.1:8080"
+    environment:
+      - TITLE=This is cool
+      - SUBTITLE=Please click the gong

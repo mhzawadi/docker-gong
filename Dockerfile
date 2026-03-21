@@ -14,7 +14,8 @@ RUN mv nginx_site.conf /etc/nginx/http.d/default.conf; \
     ln -s /dev/stdout /var/log/php-fpm.www.log; \
     ln -s /dev/stdout /var/log/php-fpm.log; \
     ln -s /dev/stdout /var/log/nginx/access.log; \
-    mv /var/www/html/start.sh /;
+    mv /var/www/html/start.sh /start.sh; \
+    chmod +x /start.sh;
 
 EXPOSE 8080
 ENTRYPOINT ["/start.sh"]

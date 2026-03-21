@@ -1,6 +1,6 @@
 ---
 services:
-  Dashboard:
+  gong:
     image: mhzawadi/gong
     ports:
       - "8080:8080"
